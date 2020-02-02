@@ -1,0 +1,44 @@
+# local.conf for zc706-zynq7 dev boards 
+# Yocto 3.0 [zeus]
+# sysvinit system
+
+# avoid some warnings for overrides to unused packages
+BBMASK = "meta-xilinx/meta-xilinx-bsp/recipes-graphics/xorg-driver"
+BBMASK += "meta-xilinx/meta-xilinx-bsp/recipes-xrt/opencl-headers"
+
+DISTRO_FEATURES = "ext2 usbhost ${DISTRO_FEATURES_LIBC}"
+
+PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
+
+PREFERRED_PROVIDER_udev = "eudev"
+VIRTUAL-RUNTIME_init_manager = "sysvinit"
+
+DL_DIR = "/src/oe"
+SSTATE_DIR = "/oe5/zynq7/sstate-cache"
+TMPDIR = "/oe5/zynq7/tmp"
+
+MACHINE = "zc706-zynq7"
+
+DISTRO = "poky"
+PACKAGE_CLASSES = "package_ipk"
+
+SDKMACHINE = "x86_64"
+
+USER_CLASSES = "image-mklibs image-prelink"
+
+PATCHRESOLVE = "noop"
+INHERIT += "rm_work"
+RM_OLD_IMAGE = "1"
+CONF_VERSION = "1"
+
+
+# for no root password
+# EXTRA_IMAGE_FEATURES = "debug-tweaks"
+
+# to enable a root password of jumpnowtek
+INHERIT += "extrausers"
+EXTRA_USERS_PARAMS = "usermod -P jumpnowtek root; "
+
+# to force a password change on first login
+INHERIT += "chageusers"
+CHAGE_USERS_PARAMS = "chage -d0 root; "
