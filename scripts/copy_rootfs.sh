@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DTB="zynq-zc706.dtb"
+
 if [ -z ${MACHINE} ]; then
     MACHINE="zc706-zynq7"
 fi
@@ -7,6 +9,15 @@ fi
 if [ "x${1}" = "x" ]; then
     echo -e "\nUsage: ${0} <block device> [ <image-type> [<hostname>] ]\n"
     exit 0
+fi
+
+mount | grep -q ${1}
+
+if [ $? -ne 1 ]; then
+    echo "Looks like partitions on device /dev/${1} are mounted"
+    echo "Not going to work on a device that is currently in use"
+    mount | grep ${1}
+    exit 1
 fi
 
 if [ ! -d /media/card ]; then
@@ -85,10 +96,10 @@ sudo mount $DEV /media/card
 echo "Extracting ${rootfs} /media/card"
 sudo tar -C /media/card -xzf ${rootfs}
 
-if [ -f ${SRCDIR}/Image-zynqmp-zcu102-rev1.0.dtb ]; then
-    echo "Copying zynqmp-zcu102-rev1.0.dtb as procyteone-zcu102.dtb"
+if [ -f ${SRCDIR}/zynq-zc706.dtb ]; then
+    echo "Copying zynq-zc706.dtb to /boot"
     sudo mkdir -p /media/card/boot
-    sudo cp ${SRCDIR}/Image-zynqmp-zcu102-rev1.0.dtb /media/card/boot/procyteone-zcu102.dtb
+    sudo cp ${SRCDIR}/zynq-zc706.dtb /media/card/boot/
 fi
 
 echo "Generating a random-seed for urandom"

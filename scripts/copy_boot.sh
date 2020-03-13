@@ -5,7 +5,7 @@ if [ -z ${MACHINE} ]; then
 fi
 
 if [ "${MACHINE}" = "zc706-zynq7" ]; then
-    FILES="boot.bin u-boot.img uImage zynq-zc706.dtb"
+    FILES="boot.bin u-boot.img"
 else
     echo "Unsupported MACHINE: $MACHINE"
     exit 1
@@ -14,6 +14,15 @@ fi
 if [ "x${1}" = "x" ]; then
     echo "Usage: ${0} <block device>"
     exit 0
+fi
+
+mount | grep -q ${1}
+
+if [ $? -ne 1 ]; then
+    echo "Looks like partitions on device /dev/${1} are mounted"
+    echo "Not going to work on a device that is currently in use"
+    mount | grep ${1}
+    exit 1
 fi
 
 if [ ! -d /media/card ]; then
@@ -77,9 +86,9 @@ for f in ${FILES}; do
     fi
 done
 
-if [ -f ./uEnv.txt-${MACHINE} ]; then
-    echo "Copying uEnv.txt-${MACHINE}"
-    sudo cp ./uEnv.txt-${MACHINE} /media/card/uEnv.txt
+if [ -f ./uEnv.txt ]; then
+    echo "Copying ./uEnv.txt"
+    sudo cp ./uEnv.txt /media/card/uEnv.txt
 elif [ -f ${SRCDIR}/uEnv.txt ]; then
     echo "Copying uEnv.txt"
     sudo cp ${SRCDIR}/uEnv.txt /media/card/uEnv.txt

@@ -1,0 +1,16 @@
+machine_name=zc706-zynq7
+bootpart=0:2
+bootdir=/boot
+kernel_image=uImage
+kernel_load_address=0x2080000
+devicetree_image=zynq-zc706.dtb
+devicetree_load_address=0x2000000
+bootargs=earlyprintk console=ttyPS0,115200 root=/dev/mmcblk0p2 rw rootwait
+loadkernel=load mmc ${bootpart} ${kernel_load_address} ${bootdir}/${kernel_image}
+loaddtb=load mmc ${bootpart} ${devicetree_load_address} ${bootdir}/${devicetree_image}
+bootkernel=run loadkernel && run loaddtb && bootm ${kernel_load_address} - ${devicetree_load_address}
+uenvcmd=run bootkernel
+bitstream_image=boot.bin
+bitstream_load_address=0x100000
+bitstream_type=load
+loadfpga=fatload mmc 0 ${bitstream_load_address} ${bitstream_image} && fpga ${bitstream_type} 0 ${bitstream_load_address} ${filesize}
