@@ -1,23 +1,39 @@
-# local.conf for zc706-zynq7 dev boards 
-# Yocto 3.0 [zeus]
-# sysvinit system
+# Local configuration for meta-zynq7 images
+# Only tested with zc706-zynq7 dev boards
+# Yocto Project 3.0 Poky distribution [zeus] branch
+# This is a sysvinit system
+
+# mask wireguard from meta-openembedded/meta-networking
+# use version in meta-jumpnow to support kernels < 5.6
+# with wireguard-linux-compat
+BBMASK = "meta-networking/recipes-kernel/wireguard"
+
+# mask cryptodev from poky/meta
+# use version from meta-jumpnow to support kernels > 5.4
+BBMASK += "meta/recipes-kernel/cryptodev"
 
 # avoid some warnings for overrides to unused packages
-BBMASK = "meta-xilinx/meta-xilinx-bsp/recipes-graphics/xorg-driver"
+BBMASK += "meta-xilinx/meta-xilinx-bsp/recipes-graphics/xorg-driver"
 BBMASK += "meta-xilinx/meta-xilinx-bsp/recipes-xrt/opencl-headers"
 
 DISTRO_FEATURES = "ext2 usbhost ${DISTRO_FEATURES_LIBC}"
+
+# remove pulseaudio
+DISTRO_FEATURES_BACKFILL_CONSIDERED += "pulseaudio"
 
 PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
 
 PREFERRED_PROVIDER_udev = "eudev"
 VIRTUAL-RUNTIME_init_manager = "sysvinit"
 
-DL_DIR = "/src/oe"
-SSTATE_DIR = "/oe5/zynq7/sstate-cache"
-TMPDIR = "/oe5/zynq7/tmp"
+# uncomment for kernels < 5.6
+WIREGUARD_COMPAT = "1"
 
 MACHINE = "zc706-zynq7"
+
+# DL_DIR = "/src/oe"
+# SSTATE_DIR = "/oe5/zynq7/sstate-cache"
+# TMPDIR = "/oe5/zynq7/tmp"
 
 DISTRO = "poky"
 PACKAGE_CLASSES = "package_ipk"
@@ -26,13 +42,7 @@ SDKMACHINE = "x86_64"
 
 USER_CLASSES = "image-mklibs image-prelink"
 
-PATCHRESOLVE = "noop"
-INHERIT += "rm_work"
-RM_OLD_IMAGE = "1"
-CONF_VERSION = "1"
-
-
-# for no root password
+# for empty root password
 # EXTRA_IMAGE_FEATURES = "debug-tweaks"
 
 # to enable a root password of jumpnowtek
@@ -42,3 +52,8 @@ EXTRA_USERS_PARAMS = "usermod -P jumpnowtek root; "
 # to force a password change on first login
 INHERIT += "chageusers"
 CHAGE_USERS_PARAMS = "chage -d0 root; "
+
+PATCHRESOLVE = "noop"
+INHERIT += "rm_work"
+RM_OLD_IMAGE = "1"
+CONF_VERSION = "1"
