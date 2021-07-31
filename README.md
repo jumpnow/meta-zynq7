@@ -1,26 +1,22 @@
 This layer depends on:
 
     URI: git://git.yoctoproject.org/poky.git
-    branch: zeus
+    branch: gatesgarth
 
     URI: git://git.openembedded.org/meta-openembedded
-    branch: zeus
+    branch: gatesgarth
 
     URI: git://git.yoctoproject.org/meta-security.git
-    branch: zeus
+    branch: gatesgarth
 
     URI: git://git.yoctoproject.org/meta-xilinx
-    branch: zeus 
-
-    URI: https://github.com/jumpnow/meta-jumpnow.git
-    branch: zeus
+    branch: gatesgarth
 
 Latest commits:
 
-    poky ca9dd4b8ea
-    meta-openembedded 9e60d3066
-    meta-security ecd8c30
+    poky 6a751048e5
+    meta-openembedded f3f7a5f1a
+    meta-security 3daf99f
     meta-xilinx b82343a
-    meta-jumpnow 1c39af3
 
 meta-zynq7 layer maintainer: Scott Ellis <scott@jumpnowtek.com>
