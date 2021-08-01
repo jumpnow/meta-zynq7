@@ -90,10 +90,10 @@ for f in ${FILES}; do
     fi
 done
 
-if [ -f ./uEnv.txt ]; then
-    echo "Copying ./uEnv.txt"
-    sudo cp ./uEnv.txt /media/card/uEnv.txt
-elif [ -f ${SRCDIR}/uEnv.txt ]; then
+#if [ -f ./uEnv.txt ]; then
+#    echo "Copying ./uEnv.txt"
+#    sudo cp ./uEnv.txt /media/card/uEnv.txt
+if [ -f ${SRCDIR}/uEnv.txt ]; then
     echo "Copying uEnv.txt"
     sudo cp ${SRCDIR}/uEnv.txt /media/card/uEnv.txt
 else

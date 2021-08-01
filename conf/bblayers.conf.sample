@@ -6,14 +6,13 @@ BBPATH = "${TOPDIR}"
 BBFILES ?= ""
 
 BBLAYERS ?= " \
-  ${HOME}/poky-zeus/meta \
-  ${HOME}/poky-zeus/meta-poky \
-  ${HOME}/poky-zeus/meta-openembedded/meta-oe \
-  ${HOME}/poky-zeus/meta-openembedded/meta-networking \
-  ${HOME}/poky-zeus/meta-openembedded/meta-perl \
-  ${HOME}/poky-zeus/meta-openembedded/meta-python \
-  ${HOME}/poky-zeus/meta-security \
-  ${HOME}/poky-zeus/meta-xilinx-bsp \
-  ${HOME}/poky-zeus/meta-jumpnow \
+  ${HOME}/poky-hardknott/meta \
+  ${HOME}/poky-hardknott/meta-poky \
+  ${HOME}/poky-hardknott/meta-openembedded/meta-oe \
+  ${HOME}/poky-hardknott/meta-openembedded/meta-networking \
+  ${HOME}/poky-hardknott/meta-openembedded/meta-perl \
+  ${HOME}/poky-hardknott/meta-openembedded/meta-python \
+  ${HOME}/poky-hardknott/meta-security \
+  ${HOME}/poky-hardknott/meta-xilinx/meta-xilinx-bsp \
   ${HOME}/zynq7/meta-zynq7 \
 "
