@@ -47,7 +47,7 @@ dd if=/dev/zero of=$DEV bs=1024 count=1024
 # Minimum required 2 partitions
 # Sectors are 512 bytes
 # 0     : 1MB, no partition, MBR then empty
-# 2048  : 128 MB, FAT partition, bootloader, kernel, dtb
+# 2048  : 128 MB, FAT partition, bootloader
 # 264192: 2GB+, linux partition, root filesystem
 
 echo "=== Creating 2 partitions ==="
