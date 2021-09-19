@@ -14,9 +14,9 @@ This layer depends on:
 
 Latest commits:
 
-    poky 0a2ca9d60f
-    meta-openembedded 7bd7e1da9
-    meta-security 5050d12
+    poky 0f0682a1fe
+    meta-openembedded dc262c52b
+    meta-security 16c68aa
     meta-xilinx 12621297
 
 meta-zynq7 layer maintainer: Scott Ellis <scott@jumpnowtek.com>
