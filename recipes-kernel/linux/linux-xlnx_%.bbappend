@@ -1,6 +1,6 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/linux-xlnx:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/linux-xlnx:"
 
-KERNEL_IMAGETYPES_remove = "zImage"
+KERNEL_IMAGETYPES:remove = "zImage"
 
 KBUILD_DEFCONFIG_zynq = ""
 

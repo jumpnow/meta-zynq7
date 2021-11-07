@@ -1,13 +1,13 @@
 This layer depends on:
 
     URI: git://git.yoctoproject.org/poky.git
-    branch: hardknott
+    branch: honister
 
     URI: git://git.openembedded.org/meta-openembedded
-    branch: hardknott
+    branch: honister
 
     URI: git://git.yoctoproject.org/meta-security.git
-    branch: hardknott
+    branch: honister
 
     URI: https://github.com/Xilinx/meta-xilinx.git 
     branch: master

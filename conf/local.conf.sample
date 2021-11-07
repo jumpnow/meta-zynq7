@@ -1,6 +1,6 @@
 # Local configuration for meta-zynq7 images
 # Only tested with zc706-zynq7 dev boards
-# Yocto Project 3.3 Poky distribution [hardknott] branch
+# Yocto Project 3.4 Poky distribution [honister] branch
 # This is a systemd system
 
 DISTRO_FEATURES = "ext2 systemd usbhost ${DISTRO_FEATURES_LIBC}"
@@ -8,15 +8,15 @@ DISTRO_FEATURES = "ext2 systemd usbhost ${DISTRO_FEATURES_LIBC}"
 # remove pulseaudio
 DISTRO_FEATURES_BACKFILL_CONSIDERED += "pulseaudio sysvinit"
 
-DISTRO_FEATURES_remove = "ptest"
+DISTRO_FEATURES:remove = "ptest"
 
 INIT_MANAGER = "systemd"
 
 MACHINE = "zc706-zynq7"
 
-#DL_DIR = "/src/hardknott"
+#DL_DIR = "/src/honister"
 #SSTATE_DIR = "/oe8/zynq7/sstate-cache"
-#TMPDIR = "/oe8/zynq7/tmp-hardknott"
+#TMPDIR = "/oe8/zynq7/tmp-honister"
 
 DISTRO = "poky"
 PACKAGE_CLASSES = "package_ipk"
@@ -25,7 +25,7 @@ SDKMACHINE = "x86_64"
 
 EXTRA_IMAGE_FEATURES = "debug-tweaks"
 
-USER_CLASSES = "image-mklibs image-prelink"
+USER_CLASSES = "image-prelink"
 PATCHRESOLVE = "noop"
 RM_OLD_IMAGE = "1"
 INHERIT += "rm_work"
