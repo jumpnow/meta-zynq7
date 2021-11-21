@@ -9,14 +9,14 @@ This layer depends on:
     URI: git://git.yoctoproject.org/meta-security.git
     branch: honister
 
-    URI: https://github.com/Xilinx/meta-xilinx.git 
-    branch: master
+    URI: https://github.com/Xilinx/meta-xilinx.git
+    branch: honister
 
 Latest commits:
 
-    poky c40ac16d79
-    meta-openembedded 0b0ab6a2d
-    meta-security 16c68aa
-    meta-xilinx 12621297
+    poky da5d1b540e
+    meta-openembedded ad52a41de
+    meta-security fb77606
+    meta-xilinx 294482da
 
 meta-zynq7 layer maintainer: Scott Ellis <scott@jumpnowtek.com>

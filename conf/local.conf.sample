@@ -3,7 +3,7 @@
 # Yocto Project 3.4 Poky distribution [honister] branch
 # This is a systemd system
 
-DISTRO_FEATURES = "ext2 systemd usbhost ${DISTRO_FEATURES_LIBC}"
+DISTRO_FEATURES = "ext2 security systemd usbhost ${DISTRO_FEATURES_LIBC}"
 
 # remove pulseaudio
 DISTRO_FEATURES_BACKFILL_CONSIDERED += "pulseaudio sysvinit"
@@ -29,4 +29,4 @@ USER_CLASSES = "image-prelink"
 PATCHRESOLVE = "noop"
 RM_OLD_IMAGE = "1"
 INHERIT += "rm_work"
-CONF_VERSION = "1"
+CONF_VERSION = "2"

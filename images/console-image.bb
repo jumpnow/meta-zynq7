@@ -1,4 +1,5 @@
-SUMMARY = "A console development image with some C/C++ dev tools"
+SUMMARY = "A console development image for the overo"
+HOMEPAGE = "http://www.jumpnowtek.com"
 
 IMAGE_FEATURES += "package-management"
 IMAGE_LINGUAS = "en-us"
@@ -16,22 +17,27 @@ KERNEL_EXTRA = " \
 "
 
 DEV_SDK = " \
-    binutils binutils-symlinks \
+    binutils \
+    binutils-symlinks \
     coreutils \
-    cpp cpp-symlinks \
+    cpp \
+    cpp-symlinks \
     diffutils \
     elfutils elfutils-binutils \
     file \
-    gcc gcc-symlinks \
-    g++ g++-symlinks \
+    gcc \
+    gcc-symlinks \
+    gdb \
+    g++ \
+    g++-symlinks \
     gettext \
     git \
     ldd \
-    libstdc++ libstdc++-dev \
+    libstdc++ \
+    libstdc++-dev \
     libtool \
     ltrace \
     make \
-    mtd-utils \
     perl-modules \
     pkgconfig \
     python3-modules \
@@ -44,7 +50,6 @@ EXTRA_TOOLS = " \
     dosfstools \
     e2fsprogs-mke2fs \
     ethtool \
-    fbset \
     findutils \
     grep \
     i2c-tools \
@@ -54,6 +59,7 @@ EXTRA_TOOLS = " \
     iptables \
     less \
     lsof \
+    mtd-utils \
     netcat-openbsd \
     ntp ntp-tickadj \
     parted \
@@ -63,6 +69,7 @@ EXTRA_TOOLS = " \
     util-linux \
     util-linux-blkid \
     unzip \
+    vim \
     wget \
     zip \
 "
