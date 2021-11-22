@@ -46,6 +46,7 @@ DEV_SDK = " \
 
 EXTRA_TOOLS = " \
     bzip2 \
+    chrony \
     curl \
     dosfstools \
     e2fsprogs-mke2fs \
@@ -61,7 +62,6 @@ EXTRA_TOOLS = " \
     lsof \
     mtd-utils \
     netcat-openbsd \
-    ntp ntp-tickadj \
     parted \
     procps \
     sysfsutils \
@@ -95,6 +95,7 @@ IMAGE_INSTALL += " \
 
 set_local_timezone() {
     ln -sf /usr/share/zoneinfo/EST5EDT ${IMAGE_ROOTFS}/etc/localtime
+    echo 'America/New_York' > ${IMAGE_ROOTFS}/etc/timezone
 }
 
 ROOTFS_POSTPROCESS_COMMAND += " \
