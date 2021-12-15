@@ -17,24 +17,19 @@ KERNEL_EXTRA = " \
 "
 
 DEV_SDK = " \
-    binutils \
-    binutils-symlinks \
+    binutils binutils-symlinks \
     coreutils \
-    cpp \
-    cpp-symlinks \
+    cpp cpp-symlinks \
     diffutils \
     elfutils elfutils-binutils \
     file \
-    gcc \
-    gcc-symlinks \
+    gcc gcc-symlinks \
     gdb \
-    g++ \
-    g++-symlinks \
+    g++ g++-symlinks \
     gettext \
     git \
     ldd \
-    libstdc++ \
-    libstdc++-dev \
+    libstdc++ libstdc++-dev \
     libtool \
     ltrace \
     make \
