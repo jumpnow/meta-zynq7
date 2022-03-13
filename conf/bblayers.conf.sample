@@ -14,5 +14,8 @@ BBLAYERS ?= " \
   ${HOME}/poky-honister/meta-openembedded/meta-python \
   ${HOME}/poky-honister/meta-security \
   ${HOME}/poky-honister/meta-xilinx/meta-xilinx-bsp \
+  ${HOME}/poky-honister/meta-xilinx/meta-xilinx-core \
+  ${HOME}/poky-honister/meta-xilinx/meta-xilinx-standalone \
+  ${HOME}/poky-honister/meta-xilinx-tools \
   ${HOME}/zynq7/meta-zynq7 \
 "

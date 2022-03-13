@@ -79,6 +79,10 @@ SYSTEMD_STUFF = " \
     systemd-bash-completion \
 "
 
+XILINX_STUFF = " \
+    u-boot-zynq-scr \
+"
+
 IMAGE_INSTALL += " \
     ${CORE_OS} \
     ${DEV_SDK} \

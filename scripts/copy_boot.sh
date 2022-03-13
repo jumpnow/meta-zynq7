@@ -5,7 +5,7 @@ if [ -z ${MACHINE} ]; then
 fi
 
 if [ "${MACHINE}" = "zc706-zynq7" ]; then
-    FILES="boot.bin u-boot.img"
+    FILES="boot.bin u-boot.img boot.scr"
 else
     echo "Unsupported MACHINE: $MACHINE"
     exit 1
@@ -89,17 +89,6 @@ for f in ${FILES}; do
         exit 1
     fi
 done
-
-#if [ -f ./uEnv.txt ]; then
-#    echo "Copying ./uEnv.txt"
-#    sudo cp ./uEnv.txt /media/card/uEnv.txt
-if [ -f ${SRCDIR}/uEnv.txt ]; then
-    echo "Copying uEnv.txt"
-    sudo cp ${SRCDIR}/uEnv.txt /media/card/uEnv.txt
-else
-    echo "No uEnv.txt found"
-fi
-
 
 echo "Unmounting ${DEV}"
 sudo sync

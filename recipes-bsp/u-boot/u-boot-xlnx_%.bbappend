@@ -1,3 +1,1 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
-
-SRC_URI += "file://0001-Fix-sd-card-boot.patch"
+UBOOT_SUFFIX = "img"
