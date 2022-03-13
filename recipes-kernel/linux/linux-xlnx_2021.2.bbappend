@@ -1,4 +1,4 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/linux-xlnx:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 KERNEL_IMAGETYPES:remove = "zImage"
 
