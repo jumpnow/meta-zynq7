@@ -64,7 +64,6 @@ EXTRA_TOOLS = " \
     util-linux \
     util-linux-blkid \
     unzip \
-    vim \
     wget \
     zip \
 "
