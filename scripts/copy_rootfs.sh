@@ -106,11 +106,6 @@ if [ -f ${SRCDIR}/zynq-zc706.dtb ]; then
     sudo cp ${SRCDIR}/zynq-zc706.dtb /media/card/boot/
 fi
 
-if [ -f ${SRCDIR}/uEnv.txt ]; then
-    echo "Copying uEnv.txt to /boot"
-    sudo cp ${SRCDIR}/uEnv.txt /media/card/boot/
-fi
-
 echo "Generating a random-seed for urandom"
 mkdir -p /media/card/var/lib/systemd
 sudo dd if=/dev/urandom of=/media/card/var/lib/systemd/random-seed bs=512 count=1
