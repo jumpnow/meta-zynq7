@@ -18,6 +18,9 @@ INIT_MANAGER = "systemd"
 
 MACHINE = "zc706-zynq7"
 
+PREFERRED_PROVIDER_virtual/kernel = "linux-stable"
+PREFERRED_VERSION_linux-stable = "5.15.%"
+
 # DL_DIR = "/src/honister"
 # SSTATE_DIR = "/oe5/zynq7/sstate-cache"
 # TMPDIR = "/oe5/zynq7/tmp-honister"
@@ -32,7 +35,6 @@ EXTRA_IMAGE_DEPENDS += "u-boot-zynq-scr"
 EXTRA_IMAGE_FEATURES = "debug-tweaks"
 
 USER_CLASSES = "image-prelink"
-
 PATCHRESOLVE = "noop"
 RM_OLD_IMAGE = "1"
 INHERIT += "rm_work"
