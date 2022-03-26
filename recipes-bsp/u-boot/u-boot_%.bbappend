@@ -1,0 +1,1 @@
+UBOOT_SUFFIX = "img"

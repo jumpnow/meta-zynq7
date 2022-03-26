@@ -5,14 +5,18 @@
 
 LICENSE_FLAGS_WHITELIST += "xilinx"
 
+# these are pulling in dependencies we don't want
+BBMASK += "meta-xilinx-core/recipes-bsp/u-boot"
+BBMASK += "meta-xilinx-bsp/recipes-bsp/u-boot"
+
 MACHINE_ESSENTIAL_EXTRA_RDEPENDS:remove = "device-tree"
-EXTRA_IMAGEDEPENDS:remove = "u-boot-zynq-uenv u-boot-zynq-scr"
+EXTRA_IMAGEDEPENDS:remove = "u-boot-zynq-uenv u-boot-zynq-scr virtual/boot-bin"
 IMAGE_BOOT_FILES:remove = "uEnv.txt"
 
 EXTRA_IMAGEDEPENDS += "u-boot-scr"
 
-PREFERRED_PROVIDER_virtual/bootloader = "u-boot-xlnx"
-PREFERRED_PROVIDER_virtual/boot-bin = "u-boot-xlnx"
+# use the poky default version of u-boot
+PREFERRED_PROVIDER_virtual/bootloader = "u-boot"
 
 DISTRO_FEATURES = "ext2 security systemd usbhost ${DISTRO_FEATURES_LIBC}"
 
