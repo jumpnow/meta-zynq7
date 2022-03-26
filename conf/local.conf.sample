@@ -5,6 +5,13 @@
 
 LICENSE_FLAGS_WHITELIST += "xilinx"
 
+# override some meta-xilinx layer stuff
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS:remove = "device-tree"
+EXTRA_IMAGEDEPENDS:remove = "u-boot-zynq-uenv u-boot-zynq-scr"
+IMAGE_BOOT_FILES:remove = "uEnv.txt"
+
+EXTRA_IMAGEDEPENDS += "u-boot-scr"
+
 PREFERRED_PROVIDER_virtual/bootloader = "u-boot-xlnx"
 PREFERRED_PROVIDER_virtual/boot-bin = "u-boot-xlnx"
 
@@ -21,16 +28,17 @@ MACHINE = "zc706-zynq7"
 PREFERRED_PROVIDER_virtual/kernel = "linux-stable"
 PREFERRED_VERSION_linux-stable = "5.15.%"
 
-# DL_DIR = "/src/honister"
-# SSTATE_DIR = "/oe5/zynq7/sstate-cache"
-# TMPDIR = "/oe5/zynq7/tmp-honister"
+IMAGE_FSTYPES = "tar.gz"
+KERNEL_IMAGETYPES = "uImage"
+
+DL_DIR = "/src/honister"
+SSTATE_DIR = "/oe5/zynq7/sstate-cache"
+TMPDIR = "/oe5/zynq7/tmp-honister"
 
 DISTRO = "poky"
 PACKAGE_CLASSES = "package_ipk"
 
 SDKMACHINE = "x86_64"
-
-EXTRA_IMAGE_DEPENDS += "u-boot-zynq-scr"
 
 EXTRA_IMAGE_FEATURES = "debug-tweaks"
 

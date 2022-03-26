@@ -1,5 +1,4 @@
-SUMMARY = "A console development image for the overo"
-HOMEPAGE = "http://www.jumpnowtek.com"
+SUMMARY = "A console development image for the zynq7"
 
 IMAGE_FEATURES += "package-management"
 IMAGE_LINGUAS = "en-us"
@@ -76,10 +75,6 @@ SECURITY_TOOLS = " \
 SYSTEMD_STUFF = " \
     systemd-analyze \
     systemd-bash-completion \
-"
-
-XILINX_STUFF = " \
-    u-boot-zynq-scr \
 "
 
 IMAGE_INSTALL += " \

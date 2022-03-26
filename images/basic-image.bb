@@ -1,5 +1,4 @@
-SUMMARY = "A basic boot image"
-HOMEPAGE = "http://www.jumpnowtek.com"
+SUMMARY = "A basic boot image with ssh"
 
 IMAGE_FEATURES += "package-management"
 IMAGE_LINGUAS = "en-us"
@@ -14,10 +13,6 @@ CORE_OS = " \
 
 KERNEL_EXTRA = " \
     kernel-modules \
-"
-
-XILINX_EXTRA = " \
-    u-boot-zynq-scr \
 "
 
 IMAGE_INSTALL += " \
