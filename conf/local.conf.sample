@@ -5,19 +5,6 @@
 
 LICENSE_FLAGS_WHITELIST += "xilinx"
 
-# these are pulling in dependencies we don't want
-BBMASK += "meta-xilinx-core/recipes-bsp/u-boot"
-BBMASK += "meta-xilinx-bsp/recipes-bsp/u-boot"
-
-MACHINE_ESSENTIAL_EXTRA_RDEPENDS:remove = "device-tree"
-EXTRA_IMAGEDEPENDS:remove = "u-boot-zynq-uenv u-boot-zynq-scr virtual/boot-bin"
-IMAGE_BOOT_FILES:remove = "uEnv.txt"
-
-EXTRA_IMAGEDEPENDS += "u-boot-scr"
-
-# use the poky default version of u-boot
-PREFERRED_PROVIDER_virtual/bootloader = "u-boot"
-
 DISTRO_FEATURES = "ext2 security systemd usbhost ${DISTRO_FEATURES_LIBC}"
 
 DISTRO_FEATURES_BACKFILL_CONSIDERED += "pulseaudio sysvinit"
@@ -28,11 +15,7 @@ INIT_MANAGER = "systemd"
 
 MACHINE = "zc706-zynq7"
 
-PREFERRED_PROVIDER_virtual/kernel = "linux-stable"
 PREFERRED_VERSION_linux-stable = "5.15.%"
-
-IMAGE_FSTYPES = "tar.gz"
-KERNEL_IMAGETYPES = "uImage"
 
 # DL_DIR = "/src/honister"
 # SSTATE_DIR = "/oe5/zynq7/sstate-cache"
