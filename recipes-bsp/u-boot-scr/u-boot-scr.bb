@@ -2,14 +2,14 @@ SUMMARY = "U-boot boot scripts for zynq7"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
-COMPATIBLE_MACHINE = "zynq"
+COMPATIBLE_MACHINE = "zc706-zynq7"
 
 DEPENDS = "u-boot-mkimage-native"
 
 INHIBIT_DEFAULT_DEPS = "1"
 
-DEVICETREE_ADDRESS:zynq = "0x2000000"
-KERNEL_LOAD_ADDRESS:zynq = "0x2080000"
+DEVICETREE_ADDRESS = "0x2000000"
+KERNEL_LOAD_ADDRESS = "0x2080000"
 
 SRC_URI = "file://boot.cmd.sd.zynq"
 
