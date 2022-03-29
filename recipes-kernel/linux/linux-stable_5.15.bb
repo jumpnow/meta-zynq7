@@ -22,4 +22,5 @@ SRCREV = "e29be6724adbc9c3126d2a9550ec21f927f22f6d"
 SRC_URI = " \
     git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;branch=linux-${LINUX_VERSION}.y \
     file://defconfig \
+    file://0001-Enable-on-board-NAND-flash.patch \
 "
