@@ -101,9 +101,11 @@ echo "Extracting ${rootfs} /media/card"
 sudo tar -C /media/card -xzf ${rootfs}
 
 if [ -f ${SRCDIR}/zynq-zc706.dtb ]; then
-    echo "Copying zynq-zc706.dtb to /boot"
-    sudo mkdir -p /media/card/boot
-    sudo cp ${SRCDIR}/zynq-zc706.dtb /media/card/boot/
+    if [ ! -f /media/card/boot/zynq-zc706.dtb ]; then
+        echo "Copying zynq-zc706.dtb to /boot"
+        sudo mkdir -p /media/card/boot
+        sudo cp ${SRCDIR}/zynq-zc706.dtb /media/card/boot/
+    fi
 fi
 
 echo "Generating a random-seed for urandom"
