@@ -1,15 +1,8 @@
 Outstanding tasks
 
-* Enable QSPI attached NAND (use linux-xlnx zynq-zc706.dts for example)
+* Full bootloader from NAND using u-boot SPL. First stage works, but don't know how to tell where to find the second stage.
 
-* Test NAND booting using u-boot SPL (how does SPL find u-boot.img?)
+* Missing driver support to load fpga from linux-stable (okay from u-boot)
 
-* Determine what TUNING parameters are required and move to a custom machine.conf
-
-* Test fpga firmware loading from Linux and u-boot
-
-* Test fpga communications with Linux (do we have correct kernel features enabled)
-
-* Use stock QEMU instead of Xilinx QEMU
-
-* Eliminate use of meta-xilinx
+* Fully test fpga communications with linux-stable (do we have correct kernel features enabled)
+  At this point have only tested that we can load and start firmware, not whether we can communicate with it.
