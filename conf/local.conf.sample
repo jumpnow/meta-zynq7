@@ -15,7 +15,7 @@ INIT_MANAGER = "systemd"
 
 MACHINE = "zc706-zynq7"
 
-PREFERRED_VERSION_linux-stable = "5.15.%"
+PREFERRED_PROVIDER_virtual/kernel = "linux-stable"
 
 # DL_DIR = "/src/honister"
 # SSTATE_DIR = "/oe5/zynq7/sstate-cache"
