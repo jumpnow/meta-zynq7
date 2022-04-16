@@ -1,0 +1,317 @@
+From 920becfd4f545665e85fdb096b3a743c286017f0 Mon Sep 17 00:00:00 2001
+From: Scott Ellis <scott@jumpnowtek.com>
+Date: Tue, 29 Mar 2022 05:34:54 -0400
+Subject: [PATCH 1/2] Enable on-board NAND flash
+
+Use the linux-xlnx device tree files which have the board
+NAND configured. (branch xlnx_rebase_v5.15)
+
+* zynq-zc706.dts
+* zynq-7000.dtsi
+---
+ arch/arm/boot/dts/zynq-7000.dtsi | 51 +++++++++++++++++++---
+ arch/arm/boot/dts/zynq-zc706.dts | 72 ++++++++++++++++++++++++++------
+ 2 files changed, 104 insertions(+), 19 deletions(-)
+
+diff --git a/arch/arm/boot/dts/zynq-7000.dtsi b/arch/arm/boot/dts/zynq-7000.dtsi
+index 47c2a4b14c06..791166025a32 100644
+--- a/arch/arm/boot/dts/zynq-7000.dtsi
++++ b/arch/arm/boot/dts/zynq-7000.dtsi
+@@ -1,6 +1,9 @@
+-// SPDX-License-Identifier: GPL-2.0
++// SPDX-License-Identifier: GPL-2.0+
+ /*
+- * Copyright (C) 2011 - 2014 Xilinx
++ * Xilinx Zynq 7000 DTSI
++ * Describes the hardware common to all Zynq 7000-based boards.
++ *
++ *  Copyright (C) 2011 - 2015 Xilinx
+  */
+ 
+ / {
+@@ -93,6 +96,7 @@ replicator_in_port0: endpoint {
+ 	};
+ 
+ 	amba: axi {
++		u-boot,dm-pre-reloc;
+ 		compatible = "simple-bus";
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+@@ -188,6 +192,13 @@ mc: memory-controller@f8006000 {
+ 			reg = <0xf8006000 0x1000>;
+ 		};
+ 
++		ocmc: ocmc@f800c000 {
++			compatible = "xlnx,zynq-ocmc-1.0";
++			interrupt-parent = <&intc>;
++			interrupts = <0 3 4>;
++			reg = <0xf800c000 0x1000>;
++		};
++
+ 		uart0: serial@e0000000 {
+ 			compatible = "xlnx,xuartps", "cdns,uart-r1p8";
+ 			status = "disabled";
+@@ -230,6 +241,18 @@ spi1: spi@e0007000 {
+ 			#size-cells = <0>;
+ 		};
+ 
++		qspi: spi@e000d000 {
++			clock-names = "ref_clk", "pclk";
++			clocks = <&clkc 10>, <&clkc 43>;
++			compatible = "xlnx,zynq-qspi-1.0";
++			status = "disabled";
++			interrupt-parent = <&intc>;
++			interrupts = <0 19 4>;
++			reg = <0xe000d000 0x1000>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++
+ 		gem0: ethernet@e000b000 {
+ 			compatible = "cdns,zynq-gem", "cdns,gem";
+ 			reg = <0xe000b000 0x1000>;
+@@ -263,6 +286,8 @@ smcc: memory-controller@e000e000 {
+ 				  0x2 0x0 0xe4000000 0x2000000>; /* SRAM/NOR CS1 region */
+ 			#address-cells = <2>;
+ 			#size-cells = <1>;
++			interrupt-parent = <&intc>;
++			interrupts = <0 18 4>;
+ 
+ 			nfc0: nand-controller@0,0 {
+ 				compatible = "arm,pl353-nand-r2p1";
+@@ -271,6 +296,13 @@ nfc0: nand-controller@0,0 {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 			};
++			nor0: flash@1,0 {
++				status = "disabled";
++				compatible = "cfi-flash";
++				reg = <1 0 0x2000000>;
++				#address-cells = <1>;
++				#size-cells = <1>;
++			};
+ 		};
+ 
+ 		sdhci0: mmc@e0100000 {
+@@ -294,15 +326,17 @@ sdhci1: mmc@e0101000 {
+ 		};
+ 
+ 		slcr: slcr@f8000000 {
++			u-boot,dm-pre-reloc;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			compatible = "xlnx,zynq-slcr", "syscon", "simple-mfd";
+ 			reg = <0xF8000000 0x1000>;
+ 			ranges;
+ 			clkc: clkc@100 {
++				u-boot,dm-pre-reloc;
+ 				#clock-cells = <1>;
+ 				compatible = "xlnx,ps7-clkc";
+-				fclk-enable = <0>;
++				fclk-enable = <0xf>;
+ 				clock-output-names = "armpll", "ddrpll", "iopll", "cpu_6or4x",
+ 						"cpu_3or2x", "cpu_2x", "cpu_1x", "ddr2x", "ddr3x",
+ 						"dci", "lqspi", "smc", "pcap", "gem0", "gem1",
+@@ -351,14 +385,19 @@ dmac_s: dmac@f8003000 {
+ 
+ 		devcfg: devcfg@f8007000 {
+ 			compatible = "xlnx,zynq-devcfg-1.0";
+-			reg = <0xf8007000 0x100>;
+ 			interrupt-parent = <&intc>;
+ 			interrupts = <0 8 4>;
+-			clocks = <&clkc 12>;
+-			clock-names = "ref_clk";
++			reg = <0xf8007000 0x100>;
++			clocks = <&clkc 12>, <&clkc 15>, <&clkc 16>, <&clkc 17>, <&clkc 18>;
++			clock-names = "ref_clk", "fclk0", "fclk1", "fclk2", "fclk3";
+ 			syscon = <&slcr>;
+ 		};
+ 
++		efuse: efuse@f800d000 {
++			compatible = "xlnx,zynq-efuse";
++			reg = <0xf800d000 0x20>;
++		};
++
+ 		global_timer: timer@f8f00200 {
+ 			compatible = "arm,cortex-a9-global-timer";
+ 			reg = <0xf8f00200 0x20>;
+diff --git a/arch/arm/boot/dts/zynq-zc706.dts b/arch/arm/boot/dts/zynq-zc706.dts
+index 77943c16d33f..cb6e9117f3a3 100644
+--- a/arch/arm/boot/dts/zynq-zc706.dts
++++ b/arch/arm/boot/dts/zynq-zc706.dts
+@@ -1,6 +1,6 @@
+-// SPDX-License-Identifier: GPL-2.0
++// SPDX-License-Identifier: GPL-2.0+
+ /*
+- *  Copyright (C) 2011 - 2014 Xilinx
++ *  Copyright (C) 2011 - 2015 Xilinx
+  *  Copyright (C) 2012 National Instruments Corp.
+  */
+ /dts-v1/;
+@@ -14,6 +14,7 @@ aliases {
+ 		ethernet0 = &gem0;
+ 		i2c0 = &i2c0;
+ 		serial0 = &uart1;
++		spi0 = &qspi;
+ 		mmc0 = &sdhci0;
+ 	};
+ 
+@@ -27,9 +28,12 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
+-	usb_phy0: phy0 {
+-		compatible = "usb-nop-xceiv";
++	usb_phy0: phy0@e0002000 {
++		compatible = "ulpi-phy";
+ 		#phy-cells = <0>;
++		reg = <0xe0002000 0x1000>;
++		view-port = <0x0170>;
++		drv-vbus;
+ 	};
+ };
+ 
+@@ -150,7 +154,7 @@ mux {
+ 		conf {
+ 			groups = "ethernet0_0_grp";
+ 			slew-rate = <0>;
+-			io-standard = <4>;
++			power-source = <4>;
+ 		};
+ 
+ 		conf-rx {
+@@ -173,7 +177,7 @@ mux-mdio {
+ 		conf-mdio {
+ 			groups = "mdio0_0_grp";
+ 			slew-rate = <0>;
+-			io-standard = <1>;
++			power-source = <1>;
+ 			bias-disable;
+ 		};
+ 	};
+@@ -187,7 +191,7 @@ mux {
+ 		conf {
+ 			groups = "gpio0_7_grp", "gpio0_46_grp", "gpio0_47_grp";
+ 			slew-rate = <0>;
+-			io-standard = <1>;
++			power-source = <1>;
+ 		};
+ 
+ 		conf-pull-up {
+@@ -211,7 +215,7 @@ conf {
+ 			groups = "i2c0_10_grp";
+ 			bias-pull-up;
+ 			slew-rate = <0>;
+-			io-standard = <1>;
++			power-source = <1>;
+ 		};
+ 	};
+ 
+@@ -224,7 +228,7 @@ mux {
+ 		conf {
+ 			groups = "sdio0_2_grp";
+ 			slew-rate = <0>;
+-			io-standard = <1>;
++			power-source = <1>;
+ 			bias-disable;
+ 		};
+ 
+@@ -238,7 +242,7 @@ conf-cd {
+ 			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <0>;
+-			io-standard = <1>;
++			power-source = <1>;
+ 		};
+ 
+ 		mux-wp {
+@@ -251,7 +255,7 @@ conf-wp {
+ 			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <0>;
+-			io-standard = <1>;
++			power-source = <1>;
+ 		};
+ 	};
+ 
+@@ -264,7 +268,7 @@ mux {
+ 		conf {
+ 			groups = "uart1_10_grp";
+ 			slew-rate = <0>;
+-			io-standard = <1>;
++			power-source = <1>;
+ 		};
+ 
+ 		conf-rx {
+@@ -287,7 +291,7 @@ mux {
+ 		conf {
+ 			groups = "usb0_0_grp";
+ 			slew-rate = <0>;
+-			io-standard = <1>;
++			power-source = <1>;
+ 		};
+ 
+ 		conf-rx {
+@@ -303,13 +307,51 @@ conf-tx {
+ 	};
+ };
+ 
++&qspi {
++	u-boot,dm-pre-reloc;
++	status = "okay";
++	is-dual = <1>;
++	num-cs = <1>;
++	flash@0 {
++		compatible = "n25q128a11", "jedec,spi-nor";
++		reg = <0x0>;
++		spi-tx-bus-width = <1>;
++		spi-rx-bus-width = <4>;
++		spi-max-frequency = <50000000>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		partition@0 {
++			label = "qspi-fsbl-uboot";
++			reg = <0x0 0x100000>;
++		};
++		partition@100000 {
++			label = "qspi-linux";
++			reg = <0x100000 0x500000>;
++		};
++		partition@600000 {
++			label = "qspi-device-tree";
++			reg = <0x600000 0x20000>;
++		};
++		partition@620000 {
++			label = "qspi-rootfs";
++			reg = <0x620000 0x5E0000>;
++		};
++		partition@c00000 {
++			label = "qspi-bitstream";
++			reg = <0xC00000 0x400000>;
++		};
++	};
++};
++
+ &sdhci0 {
++	u-boot,dm-pre-reloc;
+ 	status = "okay";
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_sdhci0_default>;
+ };
+ 
+ &uart1 {
++	u-boot,dm-pre-reloc;
+ 	status = "okay";
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_uart1_default>;
+@@ -322,3 +364,7 @@ &usb0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_usb0_default>;
+ };
++
++&watchdog0 {
++	reset-on-timeout;
++};
+-- 
+2.25.1
+
