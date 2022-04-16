@@ -16,6 +16,8 @@ INIT_MANAGER = "systemd"
 MACHINE = "zc706-zynq7"
 
 PREFERRED_PROVIDER_virtual/kernel = "linux-stable"
+# a 5.17 linux-stable recipe is available
+PREFERRED_VERSION_linux-stable = "5.15.%"
 
 # DL_DIR = "/src/honister"
 # SSTATE_DIR = "/oe5/zynq7/sstate-cache"
