@@ -1,6 +1,6 @@
 # Local configuration for meta-zynq7 images
 # Only tested with zc706-zynq7 dev boards
-# Yocto Project 3.4 Poky distribution [honister] branch
+# Yocto Project 4.0 Poky distribution [kirkstone] branch
 # This is a systemd system
 
 LICENSE_FLAGS_WHITELIST += "xilinx"
@@ -16,12 +16,13 @@ INIT_MANAGER = "systemd"
 MACHINE = "zc706-zynq7"
 
 PREFERRED_PROVIDER_virtual/kernel = "linux-stable"
+
 # a 5.17 linux-stable recipe is available
 PREFERRED_VERSION_linux-stable = "5.15.%"
 
-# DL_DIR = "/src/honister"
-# SSTATE_DIR = "/oe5/zynq7/sstate-cache"
-# TMPDIR = "/oe5/zynq7/tmp-honister"
+# DL_DIR = "/oe/dl/kirkstone"
+# SSTATE_DIR = "/oe/zynq7/sstate-cache"
+# TMPDIR = "/oe/zynq7/tmp-kirkstone"
 
 DISTRO = "poky"
 PACKAGE_CLASSES = "package_ipk"
@@ -30,7 +31,6 @@ SDKMACHINE = "x86_64"
 
 EXTRA_IMAGE_FEATURES = "debug-tweaks"
 
-USER_CLASSES = "image-prelink"
 PATCHRESOLVE = "noop"
 RM_OLD_IMAGE = "1"
 INHERIT += "rm_work"
