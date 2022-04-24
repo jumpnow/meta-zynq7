@@ -3,7 +3,7 @@
 # Yocto Project 4.0 Poky distribution [kirkstone] branch
 # This is a systemd system
 
-LICENSE_FLAGS_WHITELIST += "xilinx"
+LICENSE_FLAGS_ACCEPTED += "xilinx"
 
 DISTRO_FEATURES = "ext2 security systemd usbhost ${DISTRO_FEATURES_LIBC}"
 
