@@ -103,9 +103,9 @@ echo "Extracting $rootfs $mnt"
 sudo tar -C "$mnt" -xzf "$rootfs"
 
 echo "Generating a random-seed for urandom"
-mkdir -p /media/card/var/lib/systemd
-sudo dd if=/dev/urandom of=/media/card/var/lib/systemd/random-seed bs=512 count=1
-sudo chmod 600 /media/card/var/lib/systemd/random-seed
+mkdir -p "${mnt}/var/lib/systemd"
+sudo dd if=/dev/urandom of="${mnt}/var/lib/systemd/random-seed" bs=512 count=1
+sudo chmod 600 "${mnt}/var/lib/systemd/random-seed"
 
 echo "Writing ${target_hostname} to ${mnt}/etc/hostname"
 export mnt
