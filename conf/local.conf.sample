@@ -22,7 +22,7 @@ PREFERRED_VERSION_linux-stable = "5.15.%"
 
 # DL_DIR = "/oe/dl/kirkstone"
 # SSTATE_DIR = "/oe/zynq7/sstate-cache"
-# TMPDIR = "/oe/zynq7/tmp-kirkstone"
+# TMPDIR = "/oe/zynq7/tmp"
 
 DISTRO = "poky"
 PACKAGE_CLASSES = "package_ipk"
