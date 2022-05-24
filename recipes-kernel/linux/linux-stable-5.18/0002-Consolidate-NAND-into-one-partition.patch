@@ -1,0 +1,41 @@
+From 49bed1cdbae25671099473e2205ccb6ecec8bd5a Mon Sep 17 00:00:00 2001
+From: Scott Ellis <scott@jumpnowtek.com>
+Date: Tue, 29 Mar 2022 12:51:10 -0400
+Subject: [PATCH 2/2] Consolidate NAND into one partition
+
+---
+ arch/arm/boot/dts/zynq-zc706.dts | 18 +-----------------
+ 1 file changed, 1 insertion(+), 17 deletions(-)
+
+diff --git a/arch/arm/boot/dts/zynq-zc706.dts b/arch/arm/boot/dts/zynq-zc706.dts
+index cb6e9117f3a3..609925c23ffe 100644
+--- a/arch/arm/boot/dts/zynq-zc706.dts
++++ b/arch/arm/boot/dts/zynq-zc706.dts
+@@ -322,23 +322,7 @@ flash@0 {
+ 		#size-cells = <1>;
+ 		partition@0 {
+ 			label = "qspi-fsbl-uboot";
+-			reg = <0x0 0x100000>;
+-		};
+-		partition@100000 {
+-			label = "qspi-linux";
+-			reg = <0x100000 0x500000>;
+-		};
+-		partition@600000 {
+-			label = "qspi-device-tree";
+-			reg = <0x600000 0x20000>;
+-		};
+-		partition@620000 {
+-			label = "qspi-rootfs";
+-			reg = <0x620000 0x5E0000>;
+-		};
+-		partition@c00000 {
+-			label = "qspi-bitstream";
+-			reg = <0xC00000 0x400000>;
++			reg = <0x0 0x1000000>;
+ 		};
+ 	};
+ };
+-- 
+2.34.1
+
