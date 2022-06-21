@@ -7,6 +7,7 @@ KERNEL_CONFIG_COMMAND = "oe_runmake_call -C ${S} CC="${KERNEL_CC}" O=${B} olddef
 COMPATIBLE_MACHINE = "zc706-zynq7"
 
 KERNEL_DEVICETREE = "\
+    zynq-zc702.dtb \
     zynq-zc706.dtb \
 "
 
