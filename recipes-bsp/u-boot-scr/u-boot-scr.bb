@@ -14,7 +14,8 @@ KERNEL_LOAD_ADDRESS = "0x2080000"
 SRC_URI = "file://boot.cmd.sd.zynq"
 
 do_compile() {
-    sed -e 's/@@DEVICETREE_ADDRESS@@/${DEVICETREE_ADDRESS}/' \
+    sed -e 's/@@DEFAULT_DTB@@/${DEFAULT_DTB}.dtb/' \
+        -e 's/@@DEVICETREE_ADDRESS@@/${DEVICETREE_ADDRESS}/' \
         -e 's/@@KERNEL_LOAD_ADDRESS@@/${KERNEL_LOAD_ADDRESS}/' \
         "${WORKDIR}/boot.cmd.sd.zynq" > "${WORKDIR}/boot.cmd"
     mkimage -A ${UBOOT_ARCH} -T script -C none -n "Boot script" -d "${WORKDIR}/boot.cmd" boot.scr
