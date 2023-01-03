@@ -11,13 +11,8 @@ CORE_OS = " \
     tzdata \
 "
 
-KERNEL_EXTRA = " \
-    kernel-modules \
-"
-
 IMAGE_INSTALL += " \
     ${CORE_OS} \
-    ${KERNEL_EXTRA} \
 "
 
 set_local_timezone() {

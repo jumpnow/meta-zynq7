@@ -1,6 +1,6 @@
 # Local configuration for meta-zynq7 images
 # Only tested with zc706-zynq7 dev boards
-# Yocto Project 4.0 Poky distribution [kirkstone] branch
+# Yocto Project 4.1 Poky distribution [langdale] branch
 # This is a systemd system
 
 DISTRO_FEATURES = "ext2 security systemd usbhost ${DISTRO_FEATURES_LIBC}"
@@ -15,12 +15,9 @@ MACHINE = "zc706-zynq7"
 
 PREFERRED_PROVIDER_virtual/kernel = "linux-stable"
 
-# a 5.17 linux-stable recipe is available
-PREFERRED_VERSION_linux-stable = "5.15.%"
-
-# DL_DIR = "/oe/dl/kirkstone"
-# SSTATE_DIR = "/oe/zynq7/sstate-cache"
-# TMPDIR = "/oe/zynq7/tmp"
+# DL_DIR = "/src/langdale"
+# SSTATE_DIR = "/oe2/zynq7/sstate-cache"
+# TMPDIR = "/oe2/zynq7/tmp"
 
 DISTRO = "poky"
 PACKAGE_CLASSES = "package_ipk"

@@ -11,10 +11,6 @@ CORE_OS = " \
     tzdata \
 "
 
-KERNEL_EXTRA = " \
-    kernel-modules \
-"
-
 EXTRA_TOOLS = " \
     bzip2 \
     chrony \
@@ -51,17 +47,10 @@ SECURITY_STUFF = " \
     wireguard-tools \
 "
 
-SYSTEMD_STUFF = " \
-    systemd-analyze \
-    systemd-bash-completion \
-"
-
 IMAGE_INSTALL += " \
     ${CORE_OS} \
     ${EXTRA_TOOLS} \
-    ${KERNEL_EXTRA} \
     ${SECURITY_STUFF} \
-    ${SYSTEMD_STUFF} \
 "
 
 set_local_timezone() {

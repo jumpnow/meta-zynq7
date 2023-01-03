@@ -1,6 +1,6 @@
-From 5e51c5437a228c746e31277ec347517b102216cd Mon Sep 17 00:00:00 2001
+From 74b204b547ef3a41d7d9ec030feaf72ccfa23c66 Mon Sep 17 00:00:00 2001
 From: Scott Ellis <scott@jumpnowtek.com>
-Date: Mon, 28 Mar 2022 13:59:58 -0400
+Date: Tue, 3 Jan 2023 04:15:48 -0500
 Subject: [PATCH] Add bootz support
 
 ---
@@ -8,21 +8,21 @@ Subject: [PATCH] Add bootz support
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/configs/xilinx_zynq_virt_defconfig b/configs/xilinx_zynq_virt_defconfig
-index 3b34cf59a7..f85fe4c443 100644
+index 1f3e6a42a1..546691aaed 100644
 --- a/configs/xilinx_zynq_virt_defconfig
 +++ b/configs/xilinx_zynq_virt_defconfig
-@@ -10,6 +10,7 @@ CONFIG_DM_GPIO=y
+@@ -8,6 +8,7 @@ CONFIG_DM_GPIO=y
  CONFIG_DEFAULT_DEVICE_TREE="zynq-zc706"
  CONFIG_SPL_STACK_R_ADDR=0x200000
  CONFIG_SPL=y
 +CONFIG_CMD_BOOTZ=y
  CONFIG_CMD_FRU=y
  CONFIG_CMD_ZYNQ_AES=y
- CONFIG_DISTRO_DEFAULTS=y
-@@ -55,7 +56,7 @@ CONFIG_CMD_MTDPARTS=y
- CONFIG_CMD_MTDPARTS_SPREAD=y
+ CONFIG_SYS_LOAD_ADDR=0x0
+@@ -63,7 +64,7 @@ CONFIG_CMD_MTDPARTS_SPREAD=y
  CONFIG_CMD_MTDPARTS_SHOW_NET_SIZES=y
  CONFIG_CMD_UBI=y
+ CONFIG_OF_BOARD=y
 -CONFIG_OF_LIST="zynq-zc702 zynq-zc706 zynq-zc770-xm010 zynq-zc770-xm011 zynq-zc770-xm011-x16 zynq-zc770-xm012 zynq-zc770-xm013 zynq-cc108 zynq-microzed zynq-minized zynq-picozed zynq-zed zynq-zturn zynq-zturn-v5 zynq-zybo zynq-zybo-z7 zynq-dlc20-rev1.0"
 +CONFIG_OF_LIST="zynq-zc702 zynq-zc706"
  CONFIG_ENV_IS_NOWHERE=y
