@@ -1,6 +1,6 @@
 # Local configuration for meta-zynq7 images
 # Only tested with zc706-zynq7 dev boards
-# Yocto Project 4.1 Poky distribution [langdale] branch
+# Yocto Project 4.2 Poky distribution [mickledore] branch
 # This is a systemd system
 
 DISTRO_FEATURES = "ext2 security systemd usbhost ${DISTRO_FEATURES_LIBC}"
@@ -15,7 +15,7 @@ MACHINE = "zc706-zynq7"
 
 PREFERRED_PROVIDER_virtual/kernel = "linux-stable"
 
-# DL_DIR = "/src/langdale"
+# DL_DIR = "/src/mickledore"
 # SSTATE_DIR = "/oe2/zynq7/sstate-cache"
 # TMPDIR = "/oe2/zynq7/tmp"
 
