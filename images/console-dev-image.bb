@@ -15,12 +15,10 @@ DEV_SDK = " \
     ldd \
     libstdc++ libstdc++-dev \
     libtool \
-    ltrace \
     make \
     perl-modules \
     pkgconfig \
     python3-modules \
-    strace \
 "
 
 SECURITY_TOOLS = " \
