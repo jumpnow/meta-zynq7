@@ -8,7 +8,6 @@ DEV_SDK = " \
     cpp cpp-symlinks \
     elfutils elfutils-binutils \
     gcc gcc-symlinks \
-    gdb \
     g++ g++-symlinks \
     gettext \
     git \
@@ -16,7 +15,6 @@ DEV_SDK = " \
     libstdc++ libstdc++-dev \
     libtool \
     make \
-    perl-modules \
     pkgconfig \
     python3-modules \
 "

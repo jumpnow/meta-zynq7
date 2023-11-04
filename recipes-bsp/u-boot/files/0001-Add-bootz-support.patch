@@ -1,25 +1,27 @@
-From 1b5ed9fd4bfb63a277b7c03a5bbf0128590a226f Mon Sep 17 00:00:00 2001
+From fb74819121ff56ce187166df37b833218ca5b4d4 Mon Sep 17 00:00:00 2001
 From: Scott Ellis <scott-ellis@idexx.com>
-Date: Sat, 29 Apr 2023 08:50:15 -0400
+Date: Sat, 4 Nov 2023 09:51:46 -0400
 Subject: [PATCH] Add bootz support
+
+Upstream-Status: Inappropriate [other]
 
 ---
  configs/xilinx_zynq_virt_defconfig | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/configs/xilinx_zynq_virt_defconfig b/configs/xilinx_zynq_virt_defconfig
-index 1db3a2c635..d3d362b607 100644
+index 9900577345..97e147e7ca 100644
 --- a/configs/xilinx_zynq_virt_defconfig
 +++ b/configs/xilinx_zynq_virt_defconfig
-@@ -8,6 +8,7 @@ CONFIG_DM_GPIO=y
- CONFIG_DEFAULT_DEVICE_TREE="zynq-zc706"
+@@ -11,6 +11,7 @@ CONFIG_OF_LIBFDT_OVERLAY=y
  CONFIG_SPL_STACK_R_ADDR=0x200000
+ CONFIG_SPL_STACK=0xfffffe00
  CONFIG_SPL=y
 +CONFIG_CMD_BOOTZ=y
  CONFIG_ENV_OFFSET_REDUND=0xE40000
  CONFIG_CMD_FRU=y
  CONFIG_CMD_ZYNQ_AES=y
-@@ -79,7 +80,7 @@ CONFIG_CMD_MTDPARTS_SPREAD=y
+@@ -81,7 +82,7 @@ CONFIG_CMD_MTDPARTS_SPREAD=y
  CONFIG_CMD_MTDPARTS_SHOW_NET_SIZES=y
  CONFIG_CMD_UBI=y
  CONFIG_OF_BOARD=y
