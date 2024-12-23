@@ -19,7 +19,7 @@ do_compile() {
     sed -e 's/@@DEFAULT_DTB@@/${DEFAULT_DTB}.dtb/' \
         -e 's/@@DEVICETREE_ADDRESS@@/${DEVICETREE_ADDRESS}/' \
         -e 's/@@KERNEL_LOAD_ADDRESS@@/${KERNEL_LOAD_ADDRESS}/' \
-        "${UNPACKDIR}/boot.cmd.sd.zynq" > boot.cmd
+        "${S}/boot.cmd.sd.zynq" > boot.cmd
     mkimage -A ${UBOOT_ARCH} -T script -C none -n "Boot script" -d boot.cmd boot.scr
 }
 
