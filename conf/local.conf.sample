@@ -1,6 +1,6 @@
 # Local configuration for meta-zynq7 images
 # Only tested with zc706-zynq7 dev boards
-# Yocto Project 5.0 Poky distribution [scarthgap] branch
+# Yocto Project 5.1 Poky distribution [styhead] branch
 
 DISTRO_FEATURES = "ext2 systemd usbhost ${DISTRO_FEATURES_LIBC}"
 
@@ -12,9 +12,9 @@ INIT_MANAGER = "systemd"
 
 MACHINE = "zc706-zynq7"
 
-# DL_DIR = "/src/scarthgap"
-# SSTATE_DIR = "/oe2/zynq7/sstate-cache"
-# TMPDIR = "/oe2/zynq7/tmp"
+#DL_DIR = "/src/styhead"
+#SSTATE_DIR = "/oe2/zynq7/sstate-cache"
+#TMPDIR = "/oe2/zynq7/tmp"
 
 DISTRO = "poky"
 PACKAGE_CLASSES = "package_ipk"
