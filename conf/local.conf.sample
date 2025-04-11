@@ -1,6 +1,6 @@
 # Local configuration for meta-zynq7 images
 # Only tested with zc706-zynq7 dev boards
-# Yocto Project 5.1 Poky distribution [styhead] branch
+# Yocto Project 5.2 Poky distribution [walnascar] branch
 
 DISTRO_FEATURES = "ext2 systemd usbhost ${DISTRO_FEATURES_LIBC}"
 
@@ -12,7 +12,7 @@ INIT_MANAGER = "systemd"
 
 MACHINE = "zc706-zynq7"
 
-#DL_DIR = "/src/styhead"
+#DL_DIR = "/src/walnascar"
 #SSTATE_DIR = "/oe2/zynq7/sstate-cache"
 #TMPDIR = "/oe2/zynq7/tmp"
 
@@ -21,7 +21,7 @@ PACKAGE_CLASSES = "package_ipk"
 
 SDKMACHINE = "x86_64"
 
-EXTRA_IMAGE_FEATURES = "debug-tweaks"
+EXTRA_IMAGE_FEATURES = "empty-root-password allow-empty-password allow-root-login"
 
 PATCHRESOLVE = "noop"
 RM_OLD_IMAGE = "1"

@@ -1,6 +1,6 @@
-From 9d61142517a9ed1bf610dacf8a42194279c3f004 Mon Sep 17 00:00:00 2001
+From ae89eb1b41c9ca06cb576639538052bbfe3662be Mon Sep 17 00:00:00 2001
 From: Scott Ellis <scott-ellis@idexx.com>
-Date: Mon, 23 Dec 2024 05:34:31 -0500
+Date: Fri, 11 Apr 2025 07:49:31 -0400
 Subject: [PATCH] Add bootz support
 
 Upstream-Status: Inappropriate [Custom build]
@@ -11,18 +11,18 @@ Signed-off-by: Scott Ellis <7b2da198@proton.me>
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/configs/xilinx_zynq_virt_defconfig b/configs/xilinx_zynq_virt_defconfig
-index f30fbdf3f64..a65fdd90a2b 100644
+index ed3d1019485..3b04ca88616 100644
 --- a/configs/xilinx_zynq_virt_defconfig
 +++ b/configs/xilinx_zynq_virt_defconfig
-@@ -15,6 +15,7 @@ CONFIG_SPL_BSS_START_ADDR=0x100000
- CONFIG_SPL_BSS_MAX_SIZE=0x100000
- CONFIG_SPL_STACK_R=y
+@@ -17,6 +17,7 @@ CONFIG_SPL_STACK_R=y
+ CONFIG_SYS_BOOTM_LEN=0x3c00000
+ CONFIG_SYS_LOAD_ADDR=0x0
  CONFIG_SPL=y
 +CONFIG_CMD_BOOTZ=y
  CONFIG_ENV_OFFSET_REDUND=0xE40000
  CONFIG_CMD_FRU=y
  CONFIG_CMD_ZYNQ_AES=y
-@@ -82,7 +83,7 @@ CONFIG_CMD_MTDPARTS_SPREAD=y
+@@ -85,7 +86,7 @@ CONFIG_CMD_MTDPARTS_SPREAD=y
  CONFIG_CMD_MTDPARTS_SHOW_NET_SIZES=y
  CONFIG_CMD_UBI=y
  CONFIG_OF_BOARD=y
